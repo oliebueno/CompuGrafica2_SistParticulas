@@ -1,13 +1,23 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-    <div id="app"></div>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + TS</title>
+  <link rel="stylesheet" href="/src/css/styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="ui">
+    <h1>Sistemas de Particulas</h1>
+    <button class="button" id="System1">Rings</button>
+    <button class="button" id="System2">Smoke</button>
+    <button class="button" id="System3">Other</button>
+    <div id="scene-container"></div>
     <script type="module" src="/src/main.ts"></script>
-  </body>
+</body>
+
 </html>

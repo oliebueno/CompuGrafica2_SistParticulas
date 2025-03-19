@@ -92,7 +92,7 @@ export class Rings {
                 radius = Math.random() * 2 + 14; // Banda externa
                 color = [255, 225, 171];
             }
-    
+
             // Posiciones de las partículas
             const angle = Math.random() * Math.PI * 2;            // Ángulo
             positions[i * 3] = Math.cos(angle) * radius;          // eje x
@@ -120,7 +120,7 @@ export class Rings {
             vertexShader: vertexShaderRings,
             fragmentShader: fragmentShaderRings,
             transparent: true,
-            vertexColors: true, 
+            vertexColors: true,
             glslVersion: THREE.GLSL3,
         });
 
@@ -152,7 +152,7 @@ export class Rings {
         this.scene.add(light);
 
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.05);
-        this.scene.add(ambientLight);   
+        this.scene.add(ambientLight);
     }
 
     // Añadir Skybox
@@ -167,7 +167,7 @@ export class Rings {
             new THREE.MeshBasicMaterial({ map: textureLoader.load('system_1/skybox_front.png'), side: THREE.BackSide }),
             new THREE.MeshBasicMaterial({ map: textureLoader.load('system_1/skybox_back.png'), side: THREE.BackSide }),
         ];
-    
+
         const skyboxGeometry = new THREE.BoxGeometry(1000, 1000, 1000);
         const skybox = new THREE.Mesh(skyboxGeometry, materialArray);
         this.scene.add(skybox);
@@ -181,30 +181,30 @@ export class Rings {
             { name: 'Rhea', radius: 1.2, distance: 30, speed: 0.015, color: 0xaaaaaa },
             { name: 'Titan', radius: 2, distance: 35, speed: 0.01, color: 0xffcc66 },
         ];
-    
+
         const moonsGroup = new THREE.Group();
-    
+
         moonData.forEach((moon) => {
             const geometry = new THREE.SphereGeometry(moon.radius, 16, 16);
             const material = new THREE.MeshStandardMaterial({ color: moon.color });
             const moonMesh = new THREE.Mesh(geometry, material);
-    
+
             moonMesh.position.set(moon.distance, 0, 0);
             (moonMesh as any).orbitData = { distance: moon.distance, speed: moon.speed };
-    
+
             moonsGroup.add(moonMesh);
         });
-    
+
         this.saturn.add(moonsGroup);
     }
-    
+
     // Configurar GUI
     private setupGUI(): void {
         this.gui.add(this.uniforms.u_speed, 'value', 0, 10).name('Speed');
         this.gui.add(this.uniforms.u_amplitude, 'value', 0, 2).name('Radial Oscillation');
         this.gui.add(this.uniforms.u_waveHeight, 'value', 0, 1).name('Vertical Waves');
         this.gui.add(this.uniforms.u_ringAngle, 'value', 0, Math.PI).name('X Angle'); // Rotación sobre X
-        this.gui.add(this.uniforms.u_yAngle, 'value', 0, Math.PI).name('Y Angle'); 
+        this.gui.add(this.uniforms.u_yAngle, 'value', 0, Math.PI).name('Y Angle');
     }
 
     private onWindowResize(): void {
@@ -216,7 +216,7 @@ export class Rings {
     public animate(): void {
         requestAnimationFrame(() => this.animate());
         this.uniforms.u_time.value += 0.02;
-    
+
         // Rotar las lunas alrededor de Saturno
         this.saturn.children.forEach((group) => {
             group.children.forEach((moon) => {
@@ -225,13 +225,13 @@ export class Rings {
                     const time = this.uniforms.u_time.value * orbitData.speed;
                     moon.position.set(
                         Math.cos(time) * orbitData.distance,
-                        0,                                  
+                        0,
                         Math.sin(time) * orbitData.distance
                     );
                 }
             });
         });
-    
+
         this.controls.update();
         this.renderer.render(this.scene, this.camera);
     }
