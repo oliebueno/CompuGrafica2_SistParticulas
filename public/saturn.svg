@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Planeta -->
+  <circle cx="100" cy="100" r="40" fill="#f5deb3" />
+  
+  <!-- Anillos -->
+  <ellipse cx="100" cy="100" rx="70" ry="20" fill="none" stroke="#d2b48c" stroke-width="6" />
+  <ellipse cx="100" cy="100" rx="80" ry="25" fill="none" stroke="#a0522d" stroke-width="4" />
+</svg>

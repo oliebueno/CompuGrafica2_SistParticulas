@@ -1,5 +1,6 @@
 import { Rings } from './systems/rings';
 
+
 class MainApp {
     private currentScene: Rings | null = null;
 

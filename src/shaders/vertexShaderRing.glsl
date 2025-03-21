@@ -33,7 +33,6 @@ void main() {
     float angularSpeed = 0.5 + radius * (u_speed/100.0);
     angle += u_time * angularSpeed;
 
-    // Nueva posición
     vec3 newPosition = vec3(
         cos(angle) * radius, 
         position.y + sin(u_time + radius) * u_waveHeight, 
@@ -61,7 +60,6 @@ void main() {
 
     v_Color = color;
 
-    // Transformación al espacio del clip
     gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(newPosition, 1.0);
     gl_PointSize = size;
 }
